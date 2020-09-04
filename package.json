@@ -1,0 +1,27 @@
+{
+  "name": "@rmw/lmdb",
+  "version": "0.0.1",
+  "repository": "https://github.com/rmw-lib/lmdb",
+  "author": "i@rmw.link",
+  "license": "MulanPSL-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./": "./lib/"
+  },
+  "files": [
+    "/lib"
+  ],
+  "dependencies": {
+    "lmdb-store": "^0.6.1"
+  },
+  "devDependencies": {
+    "coffeescript": "^2.5.1",
+    "colortape": "^0.1.2",
+    "nodemon": "^2.0.4",
+    "tape": "^5.0.1"
+  },
+  "scripts": {
+    "prepare": "rm -rf lib && rsync -av --include='*/' --include='*.js' --exclude=* src/ lib/ && npx coffee --compile --output lib src/"
+  },
+  "type": "module"
+}
