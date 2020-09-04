@@ -14,32 +14,8 @@ npm install @rmw/lmdb
 
 ## 使用
 
-```
-import Lmdb from '@rmw/lmdb'
-
-lmdb = Lmdb("/tmp/test")
-db = lmdb.db({
-  encoding:'binary'
-  compression:false
-  keyIsUint32:true
-})
-
-do =>
-  await lmdb => # 开启事务
-    Promise.all [
-      db.put(1,"1")
-      db.put(77,"77")
-      db.put(78,"78")
-      db.put(79,"79")
-    ]
-
-  for i from db {start:1,end:78} # 迭代不包含end，输出 1，77
-    console.log i
-  console.log '---'
-  for i from db {start:78,end:1,reverse:true} #反向迭代， 输出 78，77
-    console.log i
-
-  console.log db.length
+```coffee
+#include ./test/index.coffee
 ```
 
 ## 关于
