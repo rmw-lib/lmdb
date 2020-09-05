@@ -1,5 +1,4 @@
 #!/usr/bin/env coffee 
-
 'use strict';
 
 var resolveModule = require('resolve').sync;
@@ -22,7 +21,8 @@ if (typeof opts.require === 'string') {
 }
 
 opts.require.forEach(function (module) {
-    var options  = { basedir: cwd, extensions: Object.keys(require.extensions) };
+  console.log(require.extensions)  
+  var options  = { basedir: cwd, extensions: Object.keys(require.extensions) };
     if (module) {
         /* This check ensures we ignore `-r ""`, trailing `-r`, or
          * other silly things the user might (inadvertently) be doing.

@@ -1,9 +1,9 @@
 #!/usr/bin/env coffee
 
 import Lmdb from '@rmw/lmdb'
-# import test from 'tape'
+import test from 'tape-catch'
 
-do =>
+test 'lmdb',(t)=>
 
   lmdb = Lmdb("/tmp/test/lmdb")
   db = lmdb.just_test( # just_test 是数据库名，可以随便定义
@@ -36,4 +36,4 @@ do =>
   db.rmEnd 3
   # t.equal db.length , 5
   # t.deepEqual Xxx([1],[2]),[3]
-  # t.end()
+  t.end()
