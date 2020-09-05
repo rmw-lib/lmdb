@@ -5,8 +5,8 @@ cd $DIR
 if [ ! -n "$1" ] ;then
 exe=src/index.coffee
 else
-exe="npx coffee --compile --output lib src/ && .direnv/bin/coffee ${@:1}"
+exe=${@:1}
 fi
 echo $exe
-exec nodemon --watch 'test/**/*' --watch 'src/**/*' -e coffee,js,mjs,json,wasm,txt,yaml --exec $exe
+exec nodemon --watch 'test/**/*' --watch 'src/**/*' -e coffee,js,mjs,json,wasm,txt,yaml --exec "npx coffee --compile --output lib src/ && .direnv/bin/coffee $exe"
 
