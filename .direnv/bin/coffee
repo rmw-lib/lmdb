@@ -2,4 +2,4 @@
 
 _DIR=$(dirname $(realpath "$0"))
 
-exec node  --trace-warnings --es-module-specifier-resolution=node --trace-uncaught --expose-gc --experimental-loader "$_DIR/coffee-loader.mjs" --unhandled-rejections=strict $@
+exec node -r module-alias/register --trace-warnings --es-module-specifier-resolution=node --trace-uncaught --expose-gc --experimental-loader "$_DIR/coffee-loader.mjs" --unhandled-rejections=strict $@

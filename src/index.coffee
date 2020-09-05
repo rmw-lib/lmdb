@@ -9,10 +9,13 @@ proxy = (db)=>
     (opt)=>
       db.getRange opt
     get:(self, name)=>
+      console.log name,"<<"
       if name == 'length'
         return db.getStats().entryCount
       else if name == "rmEndN"
-        return
+        return (n)=>
+          console.log n
+
       db[name]
   )
 
