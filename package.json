@@ -19,6 +19,7 @@
     "coffeescript": "^2.5.1",
     "colortape": "^0.1.2",
     "nodemon": "^2.0.4",
+    "source-map-support": "^0.5.19",
     "tape": "^5.0.1"
   },
   "scripts": {
