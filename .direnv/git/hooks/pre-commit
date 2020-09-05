@@ -1,7 +1,7 @@
 #!/bin/sh
 
 git add -u
-if [ $(git diff --cached --name-status|awk '{print $2}'|grep "^readme.make.md$") ]; then
+if [ $(git diff --cached --name-status|awk '{print $2}'|grep -E "^readme.make.md|test") ]; then
 npx md-include .markdown.json
 git add -u
 fi

@@ -19,8 +19,8 @@ test 'lmdb', (t)=>
 
   for q in [
     {start:1,end:78} # 迭代不包含end
-    {start:78,reverse:true}
     {start:78, end:1,reverse:true}
+    {start:78,reverse:true}
   ]
     console.log "\n---\n"
     console.log q

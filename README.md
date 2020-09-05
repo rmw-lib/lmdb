@@ -31,20 +31,24 @@ db = lmdb.db({
 
 test 'lmdb', (t)=>
   await lmdb => # 开启事务
-    Promise.all [
-      db.put(1,"1")
-      db.put(77,"77")
-      db.put(78,"78")
-      db.put(79,"79")
-    ]
+    todo = []
+    for i in [1,2,77,78,79,90]
+      todo.push db.put i,""+i
+    Promise.all todo
 
-  for i from db {start:1,end:78} # 迭代不包含end，输出 1，77
-    console.log i
-  console.log '---'
-  for i from db {start:78,end:1,reverse:true} #反向迭代， 输出 78，77
-    console.log i
+  for q in [
+    {start:1,end:78} # 迭代不包含end
+    {start:78, end:1,reverse:true}
+    {start:78,reverse:true}
+  ]
+    console.log "\n---\n"
+    console.log q
+    for i from db q #反向迭代
+      console.log i
 
-  t.equal db.length , 4
+  console.log "\n---\n"
+  console.log "db.length", db.length
+  # t.equal db.length , 5
   # t.deepEqual Xxx([1],[2]),[3]
   t.end()
 
