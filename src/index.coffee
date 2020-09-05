@@ -12,7 +12,7 @@ proxy = (db)=>
       console.log name,"<<"
       if name == 'length'
         return db.getStats().entryCount
-      else if name == "rmEndN"
+      else if name == "rmEnd"
         return (n)=>
           console.log n
 

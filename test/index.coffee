@@ -33,7 +33,7 @@ test 'lmdb', (t)=>
   console.log "db.length", db.length
   console.log "\n---\n"
 
-  db.rmEndN 3
+  db.rmEnd 3
   # t.equal db.length , 5
   # t.deepEqual Xxx([1],[2]),[3]
   t.end()
