@@ -2,13 +2,17 @@
 
 import lmdb from 'lmdb-store'
 
+
+
 proxy = (db)=>
   new Proxy(
     (opt)=>
       db.getRange opt
     get:(self, name)=>
-      if name == "length"
+      if name == 'length'
         return db.getStats().entryCount
+      else if name == "rmEndN"
+        return
       db[name]
   )
 
