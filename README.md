@@ -20,18 +20,18 @@ npm install @rmw/lmdb
 #!/usr/bin/env coffee
 
 import Lmdb from '@rmw/lmdb'
-import test from 'tape'
+# import test from 'tape'
 
-lmdb = Lmdb("/tmp/test/lmdb")
-db = lmdb.just_test( # just_test 是数据库名，可以随便定义
-  {
-    encoding:'binary'
-    compression:false
-    keyIsUint32:true
-  }
-)
+do =>
 
-test 'lmdb', (t)=>
+  lmdb = Lmdb("/tmp/test/lmdb")
+  db = lmdb.just_test( # just_test 是数据库名，可以随便定义
+    {
+      encoding:'binary'
+      compression:false
+      keyIsUint32:true
+    }
+  )
   await lmdb => # 开启事务
     todo = []
     for i in [1,2,77,78,79,90]
@@ -55,7 +55,7 @@ test 'lmdb', (t)=>
   db.rmEnd 3
   # t.equal db.length , 5
   # t.deepEqual Xxx([1],[2]),[3]
-  t.end()
+  # t.end()
 
 ```
 

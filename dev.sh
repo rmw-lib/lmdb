@@ -7,5 +7,5 @@ exe=src/index.coffee
 else
 exe=${@:1}
 fi
-exec npx nodemon --watch 'test/**/*' --watch 'src/**/*' -e coffee,js,mjs,json,wasm,txt,yaml --exec "npx coffee --compile --output lib src/ && .direnv/bin/coffee $exe"
+exec npx nodemon --watch 'test/**/*' --watch 'src/**/*' -e coffee,js,mjs,json,wasm,txt,yaml --exec "npx coffee -m --compile --output lib src/ && .direnv/bin/coffee $exe"
 
