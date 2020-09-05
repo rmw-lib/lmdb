@@ -27,6 +27,6 @@
   },
   "type": "module",
   "_moduleAliases":{
-    "@rmw/lmdb":"src/index.coffee"
+    "@rmw/lmdb":"src"
   }
 }
