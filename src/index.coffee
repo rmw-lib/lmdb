@@ -3,18 +3,45 @@
 import lmdb from 'lmdb-store'
 
 
-
 proxy = (db)=>
+
+  rmEnd = (start, n)->
+    @transaction =>
+      console.log start, n
+      for {key} from @getRange {
+         reverse:true
+         start
+      }
+        @removeSync key
+        if 0 == --n
+          break
+
+  if db.keyIsUint32
+    rmEnd = rmEnd.bind db, 0xFFFFFFFF
+  else
+    rmEnd = rmEnd.bind db, undefined
+
+
+  extend = {
+    rmEnd
+    rmToLength : (
+      (len)->
+        n = @getStats().entryCount - len
+        if n
+          rmEnd n
+    ).bind db
+
+  }
   new Proxy(
     (opt)=>
       db.getRange opt
     get:(self, name)=>
       if name == 'length'
         return db.getStats().entryCount
-      else if name == "rmEnd"
-        return (n)=>
-          console.log n
-
+      else
+        func = extend[name]
+        if func
+          return func
       db[name]
   )
 

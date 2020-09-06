@@ -13,17 +13,25 @@ test 'lmdb',(t)=>
       keyIsUint32:true
     }
   )
+
+  print = =>
+    console.log "\n---\n"
+    for i from db {start:1}
+      console.log i
+    console.log "db.length", db.length
+
   await lmdb => # 开启事务
     todo = []
     for i in [1,2,77,78,79,90]
       todo.push db.put i,""+i
-    Promise.all todo
+    await Promise.all todo
 
   for q in [
     {start:1,end:78} # 迭代不包含end
     {start:78, end:1,reverse:true}
     {start:78,reverse:true}
     {start:1}
+    {start:0xFFFFFFFF, reverse:true}
   ]
     console.log q
     for i from db q #反向迭代
@@ -33,7 +41,11 @@ test 'lmdb',(t)=>
   console.log "db.length", db.length
   console.log "\n---\n"
 
-  db.rmEnd 3
-  # t.equal db.length , 5
-  # t.deepEqual Xxx([1],[2]),[3]
+  await db.rmEnd 3
+  print()
+
+  await db.rmToLength 1
+  print()
+
+
   t.end()
