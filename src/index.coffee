@@ -2,6 +2,7 @@
 
 import lmdb from 'lmdb-store'
 import {length} from './const.mjs'
+import {basename} from 'path'
 
 proxy = (db)=>
 
@@ -56,6 +57,8 @@ proxy = (db)=>
 export default Imdb = (path, opt)=>
   opt = opt or {}
   opt.path = path
+  if not opt.name
+    opt.name = basename path
   store = lmdb.open(opt)
   openDB = store.openDB
   p = new Proxy(
