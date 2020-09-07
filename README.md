@@ -51,6 +51,8 @@ test 'lmdb',(t)=>
     {start:78,reverse:true}
     {start:1}
     {start:0xFFFFFFFF, reverse:true}
+    {reverse:true}
+    {}
   ]
     console.log q
     for i from db q #反向迭代
@@ -60,12 +62,12 @@ test 'lmdb',(t)=>
   console.log "db.length", db.length
   console.log "\n---\n"
 
-  await db.rmEnd 3
-  print()
-
-  db.length = 1
-  print()
-  t.equal(db.length, 1)
+  # await db.rmEnd 3
+  # print()
+  #
+  # db.length = 1
+  # print()
+  # t.equal(db.length, 1)
 
 
   t.end()

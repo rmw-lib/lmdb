@@ -5,34 +5,44 @@ import {length} from './const.mjs'
 
 proxy = (db)=>
 
-  rmEnd = (start, n)->
-    @transaction =>
-      for {key} from @getRange {
-         reverse:true
-         start
-      }
-        @removeSync key
-        if 0 == --n
-          break
+  # rmEnd = (start, n)->
+  #   @transaction =>
+  #     for {key} from @getRange {
+  #        reverse:true
+  #        start
+  #     }
+  #       @removeSync key
+  #       if 0 == --n
+  #         break
 
   if db.keyIsUint32
-    rmEnd = rmEnd.bind db, 0xFFFFFFFF
+    # rmEnd = rmEnd.bind db, 0xFFFFFFFF
+    init = (opt)=>
+      if not opt.start
+        if opt.reverse
+          start = 0xFFFFFFFF
+        else
+          start = 1
+        opt.start = start
+      db.getRange opt
   else
-    rmEnd = rmEnd.bind db, undefined
+    # rmEnd = rmEnd.bind db, undefined
+    init = (opt)=>
+      db.getRange opt
 
 
   extend = {
-    rmEnd
+    # rmEnd
   }
   new Proxy(
-    (opt)=>
-      db.getRange opt
-    set:(self,name,val)=>
-      if name == length
-        n = db.getStats().entryCount - val
-        if n > 0
-          return rmEnd n
-      return db[name] = val
+    init
+    # set:(self,name,val)=>
+    #   init
+    #   if name == length
+    #     n = db.getStats().entryCount - val
+    #     if n > 0
+    #       return rmEnd n
+    #   return db[name] = val
     get:(self, name)=>
       if name == length
         return db.getStats().entryCount
