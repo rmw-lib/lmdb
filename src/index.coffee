@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
 import lmdb from 'lmdb-store'
-
+import {length} from './const.mjs'
 
 proxy = (db)=>
 
@@ -24,19 +24,19 @@ proxy = (db)=>
 
   extend = {
     rmEnd
-    rmToLength : (
-      (len)->
-        n = @getStats().entryCount - len
-        if n
-          rmEnd n
-    ).bind db
-
   }
   new Proxy(
     (opt)=>
       db.getRange opt
+    set:(self,name,val)=>
+      console.log "set",name,val,"name==length"
+      if name == length
+        n = db.getStats().entryCount - val
+        if n > 0
+          return rmEnd n
+      return db[name] = val
     get:(self, name)=>
-      if name == 'length'
+      if name == length
         return db.getStats().entryCount
       else
         func = extend[name]

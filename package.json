@@ -24,7 +24,7 @@
     "tape-catch": "^1.0.6"
   },
   "scripts": {
-    "prepare": "./.git/hooks/pre-commit && rm -rf lib && rsync -av --include='*/' --include='*.js' --exclude=* src/ lib/ && npx coffee --compile --output lib src/"
+    "prepare": "./.git/hooks/pre-commit && rm -rf lib && rsync -av --include='*/' --include='*.js' --include '*.mjs' --exclude=* src/ lib/ && npx coffee --compile --output lib src/"
   },
   "type": "module"
 }
