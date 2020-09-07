@@ -12,7 +12,7 @@
     "/lib"
   ],
   "dependencies": {
-    "lmdb-store": "^0.6.1"
+    "lmdb-store": "^0.6.2"
   },
   "devDependencies": {
     "@rmw/md-include": "^0.4.5",
