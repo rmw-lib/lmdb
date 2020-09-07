@@ -18,7 +18,7 @@ proxy = (db)=>
 
   if db.keyIsUint32
     # rmEnd = rmEnd.bind db, 0xFFFFFFFF
-    init = (opt)=>
+    init = (opt={})=>
       if not opt.start
         if opt.reverse
           start = 0xFFFFFFFF
@@ -28,7 +28,7 @@ proxy = (db)=>
       db.getRange opt
   else
     # rmEnd = rmEnd.bind db, undefined
-    init = (opt)=>
+    init = (opt={})=>
       db.getRange opt
 
 
