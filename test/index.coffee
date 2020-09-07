@@ -44,7 +44,7 @@ test 'lmdb',(t)=>
   await db.rmEnd 3
   print()
 
-  await db.length = 1
+  db.length = 1
   print()
   t.equal(db.length, 1)
 

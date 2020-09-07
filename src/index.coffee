@@ -7,7 +7,6 @@ proxy = (db)=>
 
   rmEnd = (start, n)->
     @transaction =>
-      console.log start, n
       for {key} from @getRange {
          reverse:true
          start
@@ -29,7 +28,6 @@ proxy = (db)=>
     (opt)=>
       db.getRange opt
     set:(self,name,val)=>
-      console.log "set",name,val,"name==length"
       if name == length
         n = db.getStats().entryCount - val
         if n > 0
