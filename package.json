@@ -1,6 +1,6 @@
 {
   "name": "@rmw/lmdb",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "repository": "https://github.com/rmw-lib/lmdb",
   "author": "i@rmw.link",
   "license": "MulanPSL-2.0",
