@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 
-import lmdb from 'lmdb-store'
+import {open} from 'lmdb-store'
 import {length} from './const.mjs'
 import {basename} from 'path'
 
@@ -59,7 +59,7 @@ export default Imdb = (path, opt)=>
   opt.path = path
   if not opt.name
     opt.name = basename path
-  store = lmdb.open(opt)
+  store = open(opt)
   openDB = store.openDB
   p = new Proxy(
     (exec)=>
