@@ -12,13 +12,13 @@
     "/lib"
   ],
   "dependencies": {
-    "lmdb-store": "^0.6.9"
+    "lmdb-store": "^0.9.4"
   },
   "devDependencies": {
     "@rmw/md-include": "^0.4.5",
     "coffeescript": "^2.5.1",
     "colortape": "^0.1.2",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.6",
     "source-map-support": "^0.5.19",
     "tape": "^5.0.1",
     "tape-catch": "^1.0.6"
